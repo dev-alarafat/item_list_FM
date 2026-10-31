@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Forensic Medicine Checklist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Dark Theme Colors */
+            --bg-color: #0F172A;
+            --card-bg: #1E293B;
+            --text-main: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --brand-gradient: linear-gradient(135deg, #6366F1 0%, #A855F7 100%);
+            --term-gradient: linear-gradient(135deg, #FF6B6B 0%, #FF8E8B 100%);
+            --hover-bg: #334155;
+            --border-color: #334155;
+            --border-radius: 20px;
+            --shadow: 0px 18px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding: 30px 15px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        /* Header Area */
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            background: var(--brand-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        /* Sticky Progress Section - Glassmorphism */
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+            margin-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .progress-info {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .progress-percent {
+            color: #A855F7;
+            font-weight: 700;
+        }
+
+        .progress-track {
+            background-color: #0F172A;
+            height: 10px;
+            border-radius: 20px;
+            overflow: hidden;
+            width: 100%;
+            border: 1px solid var(--border-color);
+        }
+
+        .progress-fill {
+            background: var(--brand-gradient);
+            height: 100%;
+            width: 0%;
+            border-radius: 20px;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+        }
+
+        .reset-btn {
+            background: rgba(239, 68, 68, 0.1);
+            color: #F87171;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            padding: 8px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .reset-btn:hover {
+            background: #EF4444;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+        }
+
+        /* Term Title */
+        .term-title {
+            display: inline-block;
+            background: var(--term-gradient);
+            color: white;
+            padding: 8px 24px;
+            border-radius: 30px;
+            font-size: 20px;
+            font-weight: 600;
+            margin: 40px 0 20px 0;
+            box-shadow: 0 8px 16px rgba(255, 107, 107, 0.2);
+        }
+
+        /* Item Cards */
+        .item-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease;
+        }
+
+        .item-card:hover {
+            transform: translateY(-5px);
+            border-color: #475569;
+        }
+
+        .item-header {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .item-header::before {
+            content: '';
+            width: 6px;
+            height: 24px;
+            background: var(--brand-gradient);
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .topic-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* Modern Checkbox Item */
+        .topic-item {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid var(--border-color);
+            padding: 15px 20px;
+            border-radius: 16px;
+            display: flex;
+            align-items: flex-start;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .topic-item:hover {
+            background: var(--hover-bg);
+            border-color: #475569;
+        }
+
+        .topic-item.completed {
+            background: rgba(15, 23, 42, 0.6);
+            border-color: rgba(255,255,255,0.05);
+        }
+
+        .checkbox-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        /* Circular Checkbox */
+        .checkbox-wrapper input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--text-secondary);
+            border-radius: 50%;
+            margin-right: 18px;
+            outline: none;
+            cursor: pointer;
+            flex-shrink: 0;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: transparent;
+        }
+
+        .checkbox-wrapper input[type="checkbox"]:checked {
+            border-color: transparent;
+            background: var(--brand-gradient);
+            transform: scale(1.1);
+            box-shadow: 0 0 12px rgba(168, 85, 247, 0.4);
+        }
+
+        .checkbox-wrapper input[type="checkbox"]:checked::after {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 3px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        .topic-text {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-main);
+            transition: all 0.3s;
+            line-height: 1.4;
+            padding-top: 2px;
+        }
+
+        .page-num {
+            display: inline-block;
+            background: #334155;
+            color: #38BDF8;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 8px;
+            margin-top: 4px;
+        }
+
+        /* Checked State Styles */
+        .checkbox-wrapper input[type="checkbox"]:checked ~ .topic-text {
+            color: var(--text-secondary);
+            text-decoration: line-through;
+            text-decoration-color: var(--text-secondary);
+        }
+        
+        .checkbox-wrapper input[type="checkbox"]:checked ~ .topic-text .page-num {
+            background: #1E293B;
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+            .glass-panel {
+                padding: 15px;
+            }
+            .progress-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            .reset-btn {
+                align-self: flex-start;
+            }
+            .topic-item {
+                padding: 12px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="page-header">
+        <h1>Forensic Medicine</h1>
+        <p style="color: var(--text-secondary); font-weight: 500;">Complete Study Syllabus Tracker</p>
+    </div>
+
+    <!-- Floating Progress Bar -->
+    <div class="glass-panel">
+        <div class="progress-header">
+            <div class="progress-info" id="progress-text">
+                Progress: 0/0 Pages (<span class="progress-percent">0%</span>)
+            </div>
+            <button class="reset-btn" id="reset-btn">Reset All</button>
+        </div>
+        <div class="progress-track">
+            <div class="progress-fill" id="progress-bar"></div>
+        </div>
+    </div>
+
+    <!-- TERM 1 -->
+    <div class="term-title">📌 Term-1</div>
+
+    <div class="item-card">
+        <div class="item-header">Item 01: Introduction & Recent Advances</div>
+        <div class="topic-list">
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Introduction to Forensic Medicine; Branches; History & Scope <span class="page-num">Pages 1–11</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Medical Records <span class="page-num">Pages 9, 50</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Recent Advances in Forensic Medicine (DSD / Age of Child) <span class="page-num">Pages 99–104</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Consent <span class="page-num">Pages 65–68</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Euthanasia <span class="page-num">Pages 77–80</span></span></div></label>
+        </div>
+    </div>
+
+    <div class="item-card">
+        <div class="item-header">Item 02: Trace Evidence, Forensic Science & DNA Profiling</div>
+        <div class="topic-list">
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Mass Disaster, DVI (Disaster Victim Identification) <span class="page-num">Page 363, 515</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Sports Medicine <span class="page-num">Page 87, 510</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Forensic Science & Trace Evidence (Locard's Principle) <span class="page-num">Page 510 – 521</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Blood Stain & Blood Grouping <span class="page-num">Page 521 – 527</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Hair Examination <span class="page-num">Page 117 – 120, 520</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Semen & Seminal Stain <span class="page-num">Page 527 – 530</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">DNA Profiling / Fingerprinting <span class="page-num">Page 513 – 517</span></span></div></label>
+        </div>
+    </div>
+
+    <div class="item-card">
+        <div class="item-header">Item 03: Legal Aspect</div>
+        <div class="topic-list">
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Legal Structure: Courts, Power & Function; Penal Code; Sentence Authorized by Law <span class="page-num">Pages 12, 21–23, 40–42</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Legal Procedure: Evidence, Witness, Ideal Witness, Summon & Conduct Money <span class="page-num">Pages 25–39</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Certificates & Medico-Legal Reports <span class="page-num">Pages 14–17, 34</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Dying Declaration & Dying Deposition <span class="page-num">Pages 36–39</span></span></div></label>
+        </div>
+    </div>
+
+    <div class="item-card">
+        <div class="item-header">Item 04: Basics of Death & Changes After Death</div>
+        <div class="topic-list">
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Basics of Death (Definition, Types, Mode, Manner, Cause, Somatic, Apparent, Brain Death) <span class="page-num">Pages 137–157</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Changes After Death (Immediate, Early, Late Changes) <span class="page-num">Pages 158–186</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Bruise vs. Hypostasis (Paramount Differences) <span class="page-num">Pages 162–166, 223–224</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Post-mortem Artifacts <span class="page-num">Pages 508–509</span></span></div></label>
+        </div>
+    </div>
+
+    <div class="item-card">
+        <div class="item-header">Item 05: Sudden Death, Custodial Death, Torture & Neglect</div>
+        <div class="topic-list">
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Sudden Death <span class="page-num">Pages 150–153</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Custodial Death; Anaesthetic and Operative Deaths <span class="page-num">Page 8, 150–153, 199</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Torture <span class="page-num">Page 254</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Neglect & Child Abuse (Battered Baby Syndrome / BBS) <span class="page-num">Pages 438–441</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Starvation <span class="page-num">Pages 369–376</span></span></div></label>
+        </div>
+    </div>
+
+    <div class="item-card">
+        <div class="item-header">Item 06: Autopsy, Exhumation & Infanticide</div>
+        <div class="topic-list">
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Autopsy (Definition, Types, Prerequisites, Procedure, Mortuary, Lab Procedure) <span class="page-num">Pages 191–204</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Autopsy Report Writing, Special Autopsy & Special Situations <span class="page-num">Pages 199–204</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Exhumation <span class="page-num">Pages 205–207</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Inquest & Medico-Legal System (Police/Magistrate Inquest, Medical Examiner's System) <span class="page-num">Pages 12–16, 44</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Negative & Obscure Autopsy <span class="page-num">Page 203</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Infanticide (Live Born, Dead Born, Still Born, Hydrostatic Test) <span class="page-num">Pages 493–507</span></span></div></label>
+        </div>
+    </div>
+
+    <div class="item-card">
+        <div class="item-header">Item 07: Injury & Wounds</div>
+        <div class="topic-list">
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Definitions (Injury, Hurt, Assault, Battery, Homicide) <span class="page-num">Pages 211–213, 251–256</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Medico-Legal Aspects (Simple vs. Grievous Hurt, Cause of Death, Defence Wounds) <span class="page-num">Page 240, 255–258</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Mechanical Wounds (Abrasion, Bruise, Laceration, Incised, Stab Wound) <span class="page-num">Pages 216–238</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Cut Throat Wound (Suicidal vs. Homicidal Cut Throat) <span class="page-num">Pages 232–234</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Regional Injury & Transportation / Road Traffic Accident (RTA) <span class="page-num">Pages 353–368</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Thermal & Electrical Injury (Burn, Scald, Electrocution, Lightning) <span class="page-num">Pages 329–352</span></span></div></label>
+        </div>
+    </div>
+
+    <div class="item-card">
+        <div class="item-header">Item 08: Violent Asphyxial Death</div>
+        <div class="topic-list">
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Violent Asphyxial Death Overview <span class="page-num">Pages 285–291</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Hanging (Definition, Types, Mechanism, Cause, PM Findings, Ligature Mark, Suspension) <span class="page-num">Pages 292–300</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Strangulation (Definition, Types, Cause, PM Findings, ML Importance) <span class="page-num">Pages 301–306</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Drowning (Definition, Types, Pathophysiology, PM Findings, Diatom Test, Lab) <span class="page-num">Pages 314–324</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Suffocation (Smothering, Choking, Gagging, Cafe Coronary) <span class="page-num">Pages 307–311</span></span></div></label>
+        </div>
+    </div>
+
+    <div class="item-card">
+        <div class="item-header">Item 09: Forensic Aspect of Sex, Sexual Offence & Perversion</div>
+        <div class="topic-list">
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Sex Determination & Sex Traits <span class="page-num">Page 93 – 101</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Impotency & Sterility <span class="page-num">Page 443 – 450</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Marriage & Divorce <span class="page-num">Page 435 – 436</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Legitimacy, Disputed Paternity & Maternity <span class="page-num">Page 487 – 492</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Hymen, Virginity & Defloration <span class="page-num">Page 395 – 403</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Sexual Offence (Rape, Adultery, Incest) <span class="page-num">Page 404 – 415</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Unnatural Sexual Offence (Sodomy, Bestiality, Lesbianism) <span class="page-num">Page 416 – 421</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Sexual Perversion & Sexual Instinct <span class="page-num">Page 422 – 428</span></span></div></label>
+        </div>
+    </div>
+
+    <div class="item-card">
+        <div class="item-header">Item 10: Identification</div>
+        <div class="topic-list">
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Identification (Traits, Objectives, ML Importance) <span class="page-num">Pages 87–136</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Race; Sex Determination; Age Determination <span class="page-num">Pages 90, 93–110</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Dactylography (Fingerprints), Tattoo Marks, Scars, Occupational Marks, Mole <span class="page-num">Pages 121–131</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Modern Techniques, Comparison Data, Superimposition, Mutilated Body <span class="page-num">Pages 121, 131, 208–209</span></span></div></label>
+        </div>
+    </div>
+
+    <!-- TERM 2 -->
+    <div class="term-title" style="background: linear-gradient(135deg, #06B6D4 0%, #3B82F6 100%);">📌 Term-2</div>
+
+    <div class="item-card">
+        <div class="item-header">Item 11: Forensic Aspect of Reproduction</div>
+        <div class="topic-list">
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Artificial Insemination, Surrogate Mother & ARTs <span class="page-num">Page 451 – 457</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Pregnancy (Signs, ML importance) <span class="page-num">Page 458 – 466</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Delivery (Signs of recent/remote delivery) <span class="page-num">Page 467 – 472</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Abortion (Therapeutic, Justifiable, Criminal) <span class="page-num">Page 473 – 486</span></span></div></label>
+        </div>
+    </div>
+
+    <div class="item-card">
+        <div class="item-header">Item 12: Forensic Psychiatry</div>
+        <div class="topic-list">
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Forensic Psychiatry & Types of Mental Disorder <span class="page-num">Page 377 – 380</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Psychiatric Terms (Delusion, Illusion, Hallucination, Impulse, Phobia) <span class="page-num">Page 381 – 387</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Feigned Insanity, Responsibilities & McNaughten Rule <span class="page-num">Page 388 – 394</span></span></div></label>
+        </div>
+    </div>
+
+    <div class="item-card">
+        <div class="item-header">Item 13: Medical Jurisprudence - Ethics</div>
+        <div class="topic-list">
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Medical Ethics, Ideal Etiquette & WMA (Geneva) Declaration <span class="page-num">Page 49 – 51</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">BMDC & BMA (Functions, Composition & Differences) <span class="page-num">Page 51 – 56</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Rights, Privileges & Duties of Doctor and Patient <span class="page-num">Page 55 – 60</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Professional Infamous Conduct (PIC), Secrecy & Privileged Communication <span class="page-num">Page 60 – 65</span></span></div></label>
+        </div>
+    </div>
+
+    <div class="item-card">
+        <div class="item-header">Item 14: Doctor & Patient Relationship, Malpractice & Negligence</div>
+        <div class="topic-list">
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Doctor-Patient Relationship (Definition, Elements, Models, Communication) <span class="page-num">Page 83 – 86</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Medical Negligence / Malpraxis (Civil & Criminal, Elements, Prevention, Defense) <span class="page-num">Page 69 – 76</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Doctrine of Res Ipsa Loquitur, Contributory & Corporate Negligence, Misadventure, Euthanasia <span class="page-num">Page 72 – 78</span></span></div></label>
+        </div>
+    </div>
+
+    <div class="item-card">
+        <div class="item-header">Item 15: Forensic Toxicology - General Aspect</div>
+        <div class="topic-list">
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">General Aspect of Toxicology, Poison Definition & Classification <span class="page-num">Page 534 – 542</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Diagnosis & Duties of Doctor in Poisoning <span class="page-num">Page 543 – 548</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Principles of Management, Stomach Wash / Gastric Lavage & Antidotes <span class="page-num">Page 548 – 561</span></span></div></label>
+        </div>
+    </div>
+
+    <div class="item-card">
+        <div class="item-header">Item 16: Toxicology - Corrosives, Paracetamol, Metallic, Insecticide</div>
+        <div class="topic-list">
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Corrosive Poisons (Sulphuric Acid, Nitric Acid, Carbolic Acid, Vitriolage) <span class="page-num">Page 607 – 625</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Acetaminophen (Paracetamol) <span class="page-num">Page 682 – 683</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Metallic Irritant Poisons (Arsenic, Lead, Copper, Mercury) <span class="page-num">Page 626 – 644</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Insecticide (OPC / Organophosphorus Compounds) <span class="page-num">Page 562 – 571</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Kerosene Oil Poisoning <span class="page-num">Page 684 – 688</span></span></div></label>
+        </div>
+    </div>
+
+    <div class="item-card">
+        <div class="item-header">Item 17: Toxicology - Deliriant, Narcotic, Inebriant, Substance Abuse</div>
+        <div class="topic-list">
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Deliriant Agents (Datura, Cannabis, Cocaine) <span class="page-num">Page 592 – 606</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Narcotic Agents (Opium, Morphine) <span class="page-num">Page 572 – 578</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Hypnotic & Sedatives (Barbiturates, Benzodiazepines) <span class="page-num">Page 676 – 681</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Inebriant Agents (Ethyl Alcohol, Methyl Alcohol) <span class="page-num">Page 578 – 591</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Substance Abuse & Solvent Abuse (Drug Dependence, Body Packer) <span class="page-num">Page 671 – 676, 685</span></span></div></label>
+        </div>
+    </div>
+
+    <div class="item-card">
+        <div class="item-header">Item 18: Toxicology - Gases, Snake Bite, Food/Puffer Fish/Yellow Oleander</div>
+        <div class="topic-list">
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Carbon Monoxide (CO) Poisoning & War Gas <span class="page-num">Page 664 – 670</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Snake Bite (Venom, Big Five, Antivenom, 20-WBCT) <span class="page-num">Page 645 – 654</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Food Poisoning <span class="page-num">Page 692</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Potka Fish / Puffer Fish Poisoning (Tetrodotoxin) <span class="page-num">Page 689 – 691</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Yellow Oleander (Cardiac Poisoning) <span class="page-num">Page 659 – 663</span></span></div></label>
+        </div>
+    </div>
+
+    <div class="item-card">
+        <div class="item-header">Item 19 & 20: Special Branches, Soft Skills & Leadership</div>
+        <div class="topic-list">
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Clinical, Environmental, Occupational & Analytical Toxicology <span class="page-num">Page 534 – 536, 545 – 548</span></span></div></label>
+            <label class="topic-item"><div class="checkbox-wrapper"><input type="checkbox"> <span class="topic-text">Departmental Objectives, Doctor's Attitude & Soft Skills <span class="page-num">Page 1 – 11, 49 – 50</span></span></div></label>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        const resetBtn = document.getElementById('reset-btn');
+        // ইউনিক স্টোরেজ কি ব্যবহার করা হলো যাতে আগের সেভ করা ডাটার সাথে ঝামেলা না হয়
+        const STORAGE_KEY_PREFIX = 'sbmc_combined_checklist_v1_';
+
+        // পেজ নাম্বার থেকে মোট পৃষ্ঠার সংখ্যা বের করার ফাংশন
+        function calculatePages(pageStr) {
+            // Page বা Pages লেখা বাদ দেওয়া
+            let text = pageStr.replace(/Pages?/gi, '').trim();
+            let parts = text.split(',');
+            let count = 0;
+            
+            parts.forEach(part => {
+                let range = part.split(/[-–—]/); 
+                if (range.length === 2) {
+                    let start = parseInt(range[0].trim());
+                    let end = parseInt(range[1].trim());
+                    if (!isNaN(start) && !isNaN(end) && end >= start) {
+                        count += (end - start + 1);
+                    }
+                } else {
+                    let num = parseInt(part.trim());
+                    if (!isNaN(num)) count += 1;
+                }
+            });
+            return count > 0 ? count : 1;
+        }
+
+        // সেভ করা ডাটা লোড করা
+        checkboxes.forEach((cb, index) => {
+            const savedState = localStorage.getItem(STORAGE_KEY_PREFIX + index);
+            if (savedState === 'true') {
+                cb.checked = true;
+                cb.closest('.topic-item').classList.add('completed');
+            }
+
+            cb.addEventListener('change', () => {
+                localStorage.setItem(STORAGE_KEY_PREFIX + index, cb.checked);
+                
+                if(cb.checked) {
+                    cb.closest('.topic-item').classList.add('completed');
+                } else {
+                    cb.closest('.topic-item').classList.remove('completed');
+                }
+                
+                updateProgress();
+            });
+        });
+
+        // প্রোগ্রেস বারের লজিক
+        function updateProgress() {
+            let totalPages = 0;
+            let completedPages = 0;
+
+            checkboxes.forEach((cb) => {
+                const pageNumSpan = cb.closest('.topic-item').querySelector('.page-num');
+                let pagesForTopic = 1;
+                
+                if (pageNumSpan) {
+                    pagesForTopic = calculatePages(pageNumSpan.textContent);
+                }
+                
+                totalPages += pagesForTopic;
+                
+                if (cb.checked) {
+                    completedPages += pagesForTopic;
+                }
+            });
+
+            const percentage = totalPages === 0 ? 0 : Math.round((completedPages / totalPages) * 100);
+            
+            progressBar.style.width = percentage + '%';
+            progressText.innerHTML = `Progress: ${completedPages}/${totalPages} Pages (<span class="progress-percent">${percentage}%</span>)`;
+        }
+
+        // রিসেট লজিক
+        resetBtn.addEventListener('click', () => {
+            if(confirm('Are you sure you want to reset all your progress?')) {
+                checkboxes.forEach((cb, index) => {
+                    cb.checked = false;
+                    cb.closest('.topic-item').classList.remove('completed');
+                    localStorage.removeItem(STORAGE_KEY_PREFIX + index);
+                });
+                updateProgress();
+            }
+        });
+
+        updateProgress();
+    });
+</script>
+
+</body>
+</html>
